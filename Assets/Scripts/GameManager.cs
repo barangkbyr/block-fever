@@ -1,30 +1,22 @@
-using UnityEngine.SceneManagement;
+using TMPro;
 using UnityEngine;
 
 namespace Assets.Scripts {
     public class GameManager : MonoBehaviour {
-        public int score;
-        public int numberOfBalls = 3;
-        public int level;
+        [HideInInspector]
+        public static int score;
+
+        [HideInInspector]
+        public int currentLevel;
+
+        public static TextMeshPro scoreText;
 
         private void Awake() {
             DontDestroyOnLoad(this.gameObject);
         }
 
         private void Start() {
-            NewGame();
-        }
-
-        private void NewGame() {
             score = 0;
-            numberOfBalls = 3;
-            LoadLevel(1);
-        }
-
-        private void LoadLevel(int level) {
-            this.level = level;
-
-            SceneManager.LoadScene("Level" + level);
         }
     }
 }
