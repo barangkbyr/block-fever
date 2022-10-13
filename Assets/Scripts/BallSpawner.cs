@@ -50,7 +50,7 @@ namespace Assets.Scripts {
                 Line.LineRenderer.enabled = false;
             }
 
-            if (list.Count == 50) {
+            if (list.Count == ballCount) {
                 _isShooting = false;
             }
         }
