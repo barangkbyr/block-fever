@@ -1,20 +1,19 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class UiManager : MonoBehaviour {
-    public static int score;
+namespace Assets.Scripts {
+    public class UiManager : MonoBehaviour {
+        public static int Score;
 
-    [SerializeField]
-    private TextMeshProUGUI scoreText;
+        [SerializeField]
+        private TextMeshProUGUI scoreText;
 
-    private void Start() {
-        score = 0;
-    }
+        private void Start() {
+            Score = 0;
+        }
 
-    private void Update() {
-        scoreText.text = score.ToString();
+        private void Update() {
+            scoreText.text = Score.ToString();
+        }
     }
 }

@@ -3,13 +3,19 @@ using UnityEngine;
 namespace Assets.Scripts {
     public class Line : MonoBehaviour {
         private Vector3 _startPos;
-        public Vector3 _endPos;
+        public Vector3 endPos;
         private Vector3 _mousePos;
         private Vector3 _mouseDir;
 
+        public static float minAngle = 5;
+
+        public static float maxAngle = 175;
+
+        public static float Angle;
+
         private Camera _camera;
 
-        public static LineRenderer lineRenderer;
+        public static LineRenderer LineRenderer;
 
         [SerializeField]
         private GameObject renderSpawnPosition;
@@ -18,7 +24,7 @@ namespace Assets.Scripts {
         private float max = 2;
 
         private void Start() {
-            lineRenderer = GetComponent<LineRenderer>();
+            LineRenderer = GetComponent<LineRenderer>();
             _camera = Camera.main;
         }
 
@@ -28,23 +34,27 @@ namespace Assets.Scripts {
             _mouseDir.z = 0;
             _mouseDir = _mouseDir.normalized;
 
-            if (Input.GetMouseButtonDown(0)) {
-                lineRenderer.enabled = true;
-            }
+            Angle = Mathf.Atan2(_mouseDir.y, _mouseDir.x) * Mathf.Rad2Deg;
 
-            if (Input.GetMouseButton(0)) {
-                _startPos = renderSpawnPosition.transform.position;
-                _startPos.z = 0;
-                lineRenderer.SetPosition(0, _startPos);
-                _endPos = _mousePos;
-                _endPos.z = 0;
-                float capLength = Mathf.Clamp(Vector2.Distance(_startPos, _endPos), 0, max);
-                _endPos = _startPos + (_mouseDir * capLength);
-                lineRenderer.SetPosition(1, _endPos);
+            if (Angle >= minAngle && Angle <= maxAngle) {
+                if (Input.GetMouseButtonDown(0)) {
+                    LineRenderer.enabled = true;
+                }
+
+                if (Input.GetMouseButton(0)) {
+                    _startPos = renderSpawnPosition.transform.position;
+                    _startPos.z = 0;
+                    LineRenderer.SetPosition(0, _startPos);
+                    endPos = _mousePos;
+                    endPos.z = 0;
+                    float capLength = Mathf.Clamp(Vector2.Distance(_startPos, endPos), 0, max);
+                    endPos = _startPos + (_mouseDir * capLength);
+                    LineRenderer.SetPosition(1, endPos);
+                }
             }
 
             if (Input.GetMouseButtonUp(0)) {
-                lineRenderer.enabled = false;
+                LineRenderer.enabled = false;
             }
         }
     }

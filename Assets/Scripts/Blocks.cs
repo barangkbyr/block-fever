@@ -29,14 +29,14 @@ namespace Assets.Scripts {
                     gameObject.GetComponent<SpriteRenderer>().color = colors[Random.Range(0, colors.Length)];
                 } else {
                     Destroy(this.gameObject);
-                    GameManager.scoreText.text = GameManager.score.ToString();
+                    GameManager.scoreText.text = GameManager.Score.ToString();
                 }
             }
         }
 
         private void OnDestroy() {
-            GameManager.score += 10;
-            UiManager.score += GameManager.score;
+            GameManager.Score += 10;
+            UiManager.Score += GameManager.Score;
         }
     }
 }
