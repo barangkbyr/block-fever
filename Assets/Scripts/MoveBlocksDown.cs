@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using UnityEngine;
 
 namespace Assets.Scripts {
@@ -10,7 +11,8 @@ namespace Assets.Scripts {
         [SerializeField]
         private float step;
 
-        public void GoDownTest() {
+        [UsedImplicitly]
+        public void GoDown() {
             step = speed * Time.deltaTime;
 
             gameObject.transform.position = Vector2.MoveTowards(gameObject.transform.position, newGridPos, step);

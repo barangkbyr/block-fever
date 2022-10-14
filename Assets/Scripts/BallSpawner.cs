@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Assets.Scripts {
@@ -22,15 +23,22 @@ namespace Assets.Scripts {
 
         private Vector3 _mouseDir;
 
-        public Vector3 mouseDirNorm;
-
         private Camera _camera;
 
         private bool _isShooting;
 
+        private MoveBlocksDown _moveBlocksDown;
+
         [SerializeField]
         private GameObject spawnPosition;
 
+
+        private bool IsBallsAlive {
+            get {
+                list.RemoveAll(item => item == null);
+                return list.Any();
+            }
+        }
 
         public List<GameObject> list = new List<GameObject>();
 
@@ -40,7 +48,7 @@ namespace Assets.Scripts {
         }
 
         private void Update() {
-            if (_isShooting == false) {
+            if (_isShooting == false && IsBallsAlive == false) {
                 if (Input.GetMouseButtonUp(0)) {
                     if (Line.Angle >= Line.minAngle && Line.Angle <= Line.maxAngle) {
                         StartCoroutine(ShootBall());
@@ -49,13 +57,9 @@ namespace Assets.Scripts {
             } else {
                 Line.LineRenderer.enabled = false;
             }
-
-            if (list.Count == ballCount) {
-                _isShooting = false;
-            }
         }
 
-        IEnumerator ShootBall() {
+        private IEnumerator ShootBall() {
             _mousePos = _camera.ScreenToWorldPoint(Input.mousePosition);
             _mouseDir = _mousePos - spawnPosition.transform.position;
             _mouseDir.z = 0;
@@ -72,6 +76,8 @@ namespace Assets.Scripts {
                 list.Add(myInst);
                 myInst.GetComponent<Rigidbody2D>().AddForce(_mouseDir * speed);
             }
+
+            _isShooting = false;
         }
     }
 }
