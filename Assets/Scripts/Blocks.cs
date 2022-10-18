@@ -14,14 +14,17 @@ namespace Assets.Scripts {
         [SerializeField]
         private TextMeshPro lifeText;
 
+        [SerializeField]
+        private GameObject explosionEffect;
+
         private void Start() {
             lifeText = gameObject.GetComponentInChildren<TextMeshPro>();
-            life = Random.Range(50, 200);
+            life = Random.Range(15, 50);
             lifeText.text = life.ToString();
         }
 
         private void OnCollisionEnter2D(Collision2D collision) {
-            if (collision.transform.tag == "Ball") {
+            if (collision.transform.CompareTag(TagsAndLayers.BallTag)) {
                 if (life > 1) {
                     life--;
                     lifeText.text = life.ToString();
@@ -34,7 +37,9 @@ namespace Assets.Scripts {
         }
 
         private void OnDestroy() {
-            PointManager.Instance.score += 10;
+            if (!this.gameObject.scene.isLoaded) return;
+            GameObject explosion = Instantiate(explosionEffect, transform.position, transform.rotation);
+            PointManager.Instance.currentScore += 10;
         }
     }
 }

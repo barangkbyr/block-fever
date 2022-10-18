@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Assets.Scripts {
@@ -22,6 +23,15 @@ namespace Assets.Scripts {
 
         [SerializeField]
         private float max = 2;
+
+        private void Awake() {
+            GameOverScript.OnGameOver += OnGameOver;
+        }
+
+        private void OnGameOver() {
+            LineRenderer.enabled = false;
+            gameObject.SetActive(false);
+        }
 
         private void Start() {
             LineRenderer = GetComponent<LineRenderer>();

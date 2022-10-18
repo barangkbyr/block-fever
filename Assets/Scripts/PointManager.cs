@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 
@@ -7,7 +8,7 @@ namespace Assets.Scripts {
 
         public TextMeshProUGUI scoreText;
 
-        public int score;
+        public int currentScore;
 
         private void Awake() {
             if (Instance != null && Instance != this) {
@@ -15,14 +16,25 @@ namespace Assets.Scripts {
             } else {
                 Instance = this;
             }
+
+            GameManager.OnLevelSuccessfullyEnd += OnLevelSuccessfullyEnd;
         }
 
         private void Start() {
-            score = 0;
+            currentScore = 0;
+        }
+
+        private void OnLevelSuccessfullyEnd() {
+            AddScore();
         }
 
         private void Update() {
-            scoreText.text = score.ToString();
+            scoreText.text = currentScore.ToString();
+        }
+
+        private void AddScore() {
+            var saveHandler = SaveHandler.Instance.savedValues;
+            saveHandler.totalScore += currentScore;
         }
     }
 }

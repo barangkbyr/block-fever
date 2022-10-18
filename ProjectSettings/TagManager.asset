@@ -6,6 +6,10 @@ TagManager:
   tags:
   - BottomWall
   - Ball
+  - BlocksParent
+  - GameOverTrigger
+  - Target
+  - Stone
   layers:
   - Default
   - TransparentFX
@@ -15,7 +19,7 @@ TagManager:
   - UI
   - Wall
   - Ball
-  - 
+  - Target
   - 
   - 
   - 

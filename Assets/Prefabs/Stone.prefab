@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 5882195011622378714}
   - component: {fileID: 8271802256619196128}
   - component: {fileID: 5294022329300866555}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Stone
-  m_TagString: Untagged
+  m_TagString: Stone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -133,6 +133,7 @@ MonoBehaviour:
   - {r: 0, g: 0.946259, b: 1, a: 1}
   life: 0
   lifeText: {fileID: 5164711559732696748}
+  explosionEffect: {fileID: 1468720362055720871, guid: 6e8c12d3d0ac1c640aeeb6a663949b29, type: 3}
 --- !u!1 &6545720609534881602
 GameObject:
   m_ObjectHideFlags: 0
@@ -144,7 +145,7 @@ GameObject:
   - component: {fileID: 4223776658257120728}
   - component: {fileID: 2063904875377784805}
   - component: {fileID: 5164711559732696748}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
