@@ -25,6 +25,11 @@ namespace Assets.Scripts.Panels {
         }
 
         [UsedImplicitly]
+        public void OpenSkinPanel() {
+            PanelManager.Instance.ActivatePanel(PanelManager.Instance.ballSkinPanel);
+        }
+
+        [UsedImplicitly]
         public void UpgradeBallNumber() {
             var savedValues = SaveHandler.Instance.savedValues;
             if (savedValues.ballUpgradeCost <= savedValues.totalScore) {

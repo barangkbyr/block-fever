@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using JetBrains.Annotations;
 using UnityEngine;
 
 namespace Assets.Scripts {
@@ -85,9 +86,16 @@ namespace Assets.Scripts {
             _isShooting = false;
         }
 
-        public void MoveBlocks() {
-            var step = blockDownSpeed * Time.deltaTime;
-            blocksParent.transform.position = Vector2.MoveTowards(blocksParent.transform.position, new Vector2(0, -1.3f), step);
+        [UsedImplicitly]
+        public void DestroyAllBalls() {
+            GameObject[] balls = GameObject.FindGameObjectsWithTag(TagsAndLayers.BallTag);
+
+            foreach (GameObject ball in balls) {
+                Destroy(ball);
+            }
+
+            _isShooting = false;
+            _isBallsAlive = false;
         }
     }
 }

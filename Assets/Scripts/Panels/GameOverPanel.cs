@@ -1,10 +1,14 @@
+using System;
 using JetBrains.Annotations;
 using TMPro;
 using UnityEngine;
 
 namespace Assets.Scripts.Panels {
     public class GameOverPanel : BasePanel {
+        public static Action OnNewLevelStart;
+
         public TextMeshProUGUI totalScoreText;
+        public GameObject blocksParent;
 
         private void OnEnable() {
             totalScoreText.text = "Total Score: " + SaveHandler.Instance.savedValues.totalScore;
@@ -14,10 +18,11 @@ namespace Assets.Scripts.Panels {
         [UsedImplicitly]
         public void ReplayLevel() {
             ClearAllBlocks();
-            PointManager.Instance.currentScore = 0;
+            blocksParent.transform.position = Vector3.zero;
             GridManager.Instance.GenerateGrid(6, 6);
             EnableSpawnerAndLine();
             PanelManager.Instance.DeactivatePanel(PanelManager.Instance.gameOverPanel);
+            OnNewLevelStart?.Invoke();
         }
 
         private void ClearAllBlocks() {

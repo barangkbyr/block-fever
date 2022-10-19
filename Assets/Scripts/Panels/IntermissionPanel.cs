@@ -1,10 +1,13 @@
 using JetBrains.Annotations;
 using TMPro;
+using UnityEngine;
 
 namespace Assets.Scripts.Panels {
     public class IntermissionPanel : BasePanel {
         public TextMeshProUGUI currentScoreText;
         public TextMeshProUGUI totalScoreText;
+
+        public GameObject blocksParent;
 
         private void OnEnable() {
             currentScoreText.text = "Won: " + PointManager.Instance.currentScore;
@@ -20,6 +23,7 @@ namespace Assets.Scripts.Panels {
         [UsedImplicitly]
         public void NextLevel() {
             PointManager.Instance.currentScore = 0;
+            blocksParent.transform.position = Vector3.zero;
             GridManager.Instance.GenerateGrid(6, 6);
             EnableSpawnerAndLine();
             PanelManager.Instance.DeactivatePanel(PanelManager.Instance.intermissionPanel);

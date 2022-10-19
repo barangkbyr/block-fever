@@ -1,4 +1,5 @@
 using System;
+using Assets.Scripts.Panels;
 using TMPro;
 using UnityEngine;
 
@@ -17,10 +18,11 @@ namespace Assets.Scripts {
                 Instance = this;
             }
 
+            GameOverPanel.OnNewLevelStart += OnNewLevelStart;
             GameManager.OnLevelSuccessfullyEnd += OnLevelSuccessfullyEnd;
         }
 
-        private void Start() {
+        private void OnNewLevelStart() {
             currentScore = 0;
         }
 
@@ -29,12 +31,13 @@ namespace Assets.Scripts {
         }
 
         private void Update() {
-            scoreText.text = currentScore.ToString();
+            scoreText.text = "Current Points: " + currentScore;
         }
 
         private void AddScore() {
-            var saveHandler = SaveHandler.Instance.savedValues;
-            saveHandler.totalScore += currentScore;
+            var saveHandler = SaveHandler.Instance;
+            saveHandler.savedValues.totalScore += currentScore;
+            saveHandler.Save();
         }
     }
 }

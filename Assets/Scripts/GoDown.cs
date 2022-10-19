@@ -5,6 +5,8 @@ namespace Assets.Scripts {
         [SerializeField]
         private float blockDownSpeed;
 
+        public GameObject block;
+
         private void Awake() {
             BallSpawner.OnAllBallsDied += OnAllBallsDied;
         }
@@ -14,8 +16,11 @@ namespace Assets.Scripts {
         }
 
         private void MoveBlocks() {
-            var step = blockDownSpeed * Time.deltaTime;
-            gameObject.transform.position = Vector2.MoveTowards(gameObject.transform.position, new Vector2(0, -3.65f), step);
+            block = GameObject.FindGameObjectWithTag(TagsAndLayers.StoneTag);
+            if (block.gameObject.activeInHierarchy) {
+                var step = blockDownSpeed * Time.deltaTime;
+                gameObject.transform.position = Vector2.MoveTowards(gameObject.transform.position, new Vector2(0, -3.65f), step);
+            }
         }
     }
 }

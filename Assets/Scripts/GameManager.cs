@@ -4,10 +4,13 @@ using UnityEngine;
 namespace Assets.Scripts {
     public class GameManager : MonoBehaviour {
         private GameObject _blockPrefab;
+        public SpriteRenderer ballSpriteRenderer;
+        public SpriteRenderer currentBallSprite;
 
         public static Action OnLevelSuccessfullyEnd;
 
         private void Awake() {
+            currentBallSprite.sprite = ballSpriteRenderer.sprite;
             BallSpawner.OnAllBallsDied += OnAllBallsDied;
             DontDestroyOnLoad(this.gameObject);
         }

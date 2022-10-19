@@ -39,7 +39,9 @@ namespace Assets.Scripts {
         private void OnDestroy() {
             if (!this.gameObject.scene.isLoaded) return;
             GameObject explosion = Instantiate(explosionEffect, transform.position, transform.rotation);
-            PointManager.Instance.currentScore += 10;
+            if (life == 1) {
+                PointManager.Instance.currentScore += 10;
+            }
         }
     }
 }
