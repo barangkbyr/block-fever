@@ -1,4 +1,3 @@
-using System;
 using JetBrains.Annotations;
 using TMPro;
 using UnityEngine;
@@ -7,6 +6,8 @@ using UnityEngine.UI;
 namespace Assets.Scripts {
     public class SkinManager : MonoBehaviour {
         public BallDatabase ballDb;
+
+        public TextMeshProUGUI totalScore;
 
         [Header("Skin Preview Manager")]
         public Image imageRenderer;
@@ -21,9 +22,12 @@ namespace Assets.Scripts {
         [SerializeField]
         private int[] ballPrices;
         public SpriteRenderer ballSpriteRenderer;
+        public SpriteRenderer spawnLocationBall;
 
         void Start() {
-            _selectedBallSkinPreview = SaveHandler.Instance.savedValues.currentBallSkinPreview;
+            var saveHandler = SaveHandler.Instance.savedValues;
+            _selectedBallSkinPreview = saveHandler.currentBallSkinPreview;
+            totalScore.text = "Total Score: " + saveHandler.totalScore;
             UpdateBall(_selectedBallSkinPreview);
         }
 
@@ -70,8 +74,10 @@ namespace Assets.Scripts {
 
         [UsedImplicitly]
         public void UnlockBall() {
-            SaveHandler.Instance.savedValues.totalScore -= ballPrices[_selectedBallSkinPreview];
-            SaveHandler.Instance.savedValues.isBallsUnlocked[_selectedBallSkinPreview] = true;
+            var saveHandler = SaveHandler.Instance.savedValues;
+            saveHandler.totalScore -= ballPrices[_selectedBallSkinPreview];
+            saveHandler.isBallsUnlocked[_selectedBallSkinPreview] = true;
+            totalScore.text = "Total Score: " + saveHandler.totalScore;
             SaveHandler.Instance.Save();
             UpdateBall(_selectedBallSkinPreview);
         }
@@ -80,6 +86,7 @@ namespace Assets.Scripts {
         public void ApplyBall() {
             Ball ball = ballDb.GetBall(_selectedBallSkinPreview);
             ballSpriteRenderer.sprite = ball.ballSprite;
+            spawnLocationBall.sprite = ball.ballSprite;
             SaveHandler.Instance.Save();
         }
 

@@ -14,12 +14,6 @@ namespace Assets.Scripts {
         [SerializeField]
         private float speed;
 
-        [SerializeField]
-        private float blockDownSpeed;
-
-        [SerializeField]
-        private GameObject blocksParent;
-
         private Vector3 _mousePos;
         private Vector3 _mouseDir;
 
@@ -51,7 +45,7 @@ namespace Assets.Scripts {
 
             if (_isShooting == false && isAlive == false) {
                 if (Input.GetMouseButtonUp(0)) {
-                    if (Line.Angle >= Line.minAngle && Line.Angle <= Line.maxAngle) {
+                    if (Line.Angle >= Line.MinAngle && Line.Angle <= Line.MaxAngle) {
                         StartCoroutine(ShootBall());
                     }
                 }

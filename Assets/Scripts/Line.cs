@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 namespace Assets.Scripts {
@@ -8,9 +7,9 @@ namespace Assets.Scripts {
         private Vector3 _mousePos;
         private Vector3 _mouseDir;
 
-        public static float minAngle = 5;
+        public static float MinAngle = 5;
 
-        public static float maxAngle = 175;
+        public static float MaxAngle = 175;
 
         public static float Angle;
 
@@ -46,7 +45,7 @@ namespace Assets.Scripts {
 
             Angle = Mathf.Atan2(_mouseDir.y, _mouseDir.x) * Mathf.Rad2Deg;
 
-            if (Angle >= minAngle && Angle <= maxAngle) {
+            if (Angle >= MinAngle && Angle <= MaxAngle) {
                 if (Input.GetMouseButtonDown(0)) {
                     LineRenderer.enabled = true;
                 }

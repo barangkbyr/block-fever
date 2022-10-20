@@ -10,7 +10,6 @@ namespace Assets.Scripts {
         public MainMenuPanel mainMenuPanel;
         public UpgradePanel upgradePanel;
         public BallSkinPanel ballSkinPanel;
-        public InGamePanel inGamePanel;
 
         private void Awake() {
             if (Instance != null && Instance != this) {
@@ -35,7 +34,6 @@ namespace Assets.Scripts {
             mainMenuPanel.gameObject.SetActive(false);
             upgradePanel.gameObject.SetActive(false);
             ballSkinPanel.gameObject.SetActive(false);
-            inGamePanel.gameObject.SetActive(false);
         }
     }
 }

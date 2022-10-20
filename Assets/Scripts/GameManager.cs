@@ -10,6 +10,7 @@ namespace Assets.Scripts {
         public static Action OnLevelSuccessfullyEnd;
 
         private void Awake() {
+            Application.targetFrameRate = Screen.currentResolution.refreshRate;
             currentBallSprite.sprite = ballSpriteRenderer.sprite;
             BallSpawner.OnAllBallsDied += OnAllBallsDied;
             DontDestroyOnLoad(this.gameObject);

@@ -13,6 +13,7 @@ namespace Assets.Scripts.Panels {
             currentScoreText.text = "Won: " + PointManager.Instance.currentScore;
             totalScoreText.text = "Total Score: " + SaveHandler.Instance.savedValues.totalScore;
             DisableSpawnerAndLine();
+            DisableTopUi();
         }
 
         [UsedImplicitly]
@@ -26,6 +27,7 @@ namespace Assets.Scripts.Panels {
             blocksParent.transform.position = Vector3.zero;
             GridManager.Instance.GenerateGrid(6, 6);
             EnableSpawnerAndLine();
+            EnableTopUi();
             PanelManager.Instance.DeactivatePanel(PanelManager.Instance.intermissionPanel);
         }
     }

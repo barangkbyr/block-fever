@@ -13,6 +13,7 @@ namespace Assets.Scripts.Panels {
         private void OnEnable() {
             totalScoreText.text = "Total Score: " + SaveHandler.Instance.savedValues.totalScore;
             DisableSpawnerAndLine();
+            DisableTopUi();
         }
 
         [UsedImplicitly]
@@ -21,8 +22,14 @@ namespace Assets.Scripts.Panels {
             blocksParent.transform.position = Vector3.zero;
             GridManager.Instance.GenerateGrid(6, 6);
             EnableSpawnerAndLine();
+            EnableTopUi();
             PanelManager.Instance.DeactivatePanel(PanelManager.Instance.gameOverPanel);
             OnNewLevelStart?.Invoke();
+        }
+
+        [UsedImplicitly]
+        public void OpenUpgradePanel() {
+            PanelManager.Instance.ActivatePanel(PanelManager.Instance.upgradePanel);
         }
 
         private void ClearAllBlocks() {

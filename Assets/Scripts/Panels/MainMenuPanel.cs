@@ -6,7 +6,8 @@ namespace Assets.Scripts.Panels {
         public void StartGame() {
             GridManager.Instance.GenerateGrid(6, 6);
             EnableSpawnerAndLine();
-            PanelManager.Instance.ActivatePanel(PanelManager.Instance.inGamePanel);
+            EnableTopUi();
+            PanelManager.Instance.DeactivatePanel(PanelManager.Instance.mainMenuPanel);
         }
     }
 }

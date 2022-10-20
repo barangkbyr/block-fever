@@ -8,6 +8,7 @@ namespace Assets.Scripts.Panels {
     public class UpgradePanel : BasePanel {
         public TextMeshProUGUI totalBallNumber;
         public TextMeshProUGUI ballUpgradeCost;
+        public TextMeshProUGUI totalScore;
 
         public Button ballUpgradeButton;
 
@@ -37,8 +38,9 @@ namespace Assets.Scripts.Panels {
                 savedValues.ballCount += 1;
                 savedValues.ballUpgradeCost *= 2;
                 RefreshUi();
+                CheckIfValuesEnough();
             } else {
-                ballUpgradeCost.text = "+1 Ball Upgrade Cost: " + savedValues.ballUpgradeCost.StrikeThrough();
+                ballUpgradeCost.text = ("+1 Ball Upgrade Cost: " + savedValues.ballUpgradeCost).StrikeThrough();
             }
         }
 
@@ -46,6 +48,7 @@ namespace Assets.Scripts.Panels {
             var saveHandler = SaveHandler.Instance.savedValues;
             totalBallNumber.text = "Total Number of Balls: " + saveHandler.ballCount.Bold();
             ballUpgradeCost.text = "+1 Ball Upgrade Cost: " + saveHandler.ballUpgradeCost.Bold();
+            totalScore.text = "Total Score: " + saveHandler.totalScore;
         }
 
         private void CheckIfValuesEnough() {
@@ -55,7 +58,7 @@ namespace Assets.Scripts.Panels {
 
         private void SetUpgradeButtonSprite(int totalScore, int upgradeCost, Button upgradeButton, TextMeshProUGUI upgradeCostText) {
             upgradeButton.image.sprite = totalScore >= upgradeCost ? onSprite : offSprite;
-            upgradeCostText.text = totalScore >= upgradeCost ? upgradeCost.ToString() : "+1 Ball Upgrade Cost: " + upgradeCost.StrikeThrough();
+            upgradeCostText.text = totalScore >= upgradeCost ? "+1 Ball Upgrade Cost: " + upgradeCost.Bold() : ("+1 Ball Upgrade Cost: " + upgradeCost).StrikeThrough();
         }
 
         private void OnDisable() {
