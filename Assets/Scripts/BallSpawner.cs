@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 namespace Assets.Scripts {
     public class BallSpawner : MonoBehaviour {
@@ -26,6 +28,8 @@ namespace Assets.Scripts {
 
         private bool _isBallsAlive;
 
+        public Button recallButton;
+
         private List<GameObject> list = new List<GameObject>();
 
         private void Start() {
@@ -44,12 +48,14 @@ namespace Assets.Scripts {
             _isBallsAlive = isAlive;
 
             if (_isShooting == false && isAlive == false) {
+                recallButton.interactable = false;
                 if (Input.GetMouseButtonUp(0)) {
                     if (Line.Angle >= Line.MinAngle && Line.Angle <= Line.MaxAngle) {
                         StartCoroutine(ShootBall());
                     }
                 }
             } else {
+                recallButton.interactable = true;
                 Line.LineRenderer.enabled = false;
             }
         }
