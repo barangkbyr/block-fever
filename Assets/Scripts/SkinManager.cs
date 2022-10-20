@@ -78,6 +78,7 @@ namespace Assets.Scripts {
             saveHandler.totalScore -= ballPrices[_selectedBallSkinPreview];
             saveHandler.isBallsUnlocked[_selectedBallSkinPreview] = true;
             totalScore.text = "Total Score: " + saveHandler.totalScore;
+            saveHandler.currentBallSkinPreview = _selectedBallSkinPreview;
             SaveHandler.Instance.Save();
             UpdateBall(_selectedBallSkinPreview);
         }
@@ -87,6 +88,7 @@ namespace Assets.Scripts {
             Ball ball = ballDb.GetBall(_selectedBallSkinPreview);
             ballSpriteRenderer.sprite = ball.ballSprite;
             spawnLocationBall.sprite = ball.ballSprite;
+            SaveHandler.Instance.savedValues.currentBallSkinPreview = _selectedBallSkinPreview;
             SaveHandler.Instance.Save();
         }
 

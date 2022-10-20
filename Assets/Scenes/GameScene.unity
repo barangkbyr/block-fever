@@ -2303,6 +2303,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ballSpriteRenderer: {fileID: 4221291024181082724, guid: c220d7b19828bb14ab26fd27925eecb7, type: 3}
   currentBallSprite: {fileID: 1367091310}
+  ballDb: {fileID: 11400000, guid: 62564f714c4f2a74ea8bd6905c677f7b, type: 2}
 --- !u!4 &676079255
 Transform:
   m_ObjectHideFlags: 0
