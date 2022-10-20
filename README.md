@@ -9,4 +9,4 @@ Unity version: <b>2021.3.6f1</b>
 * Upgrade system
 
 <b>Screenshots</b>
-(https://github.com/barangkbyr/brick-breaker/blob/main/MainMenu.png)
+![Screenshot](https://github.com/barangkbyr/brick-breaker/blob/main/MainMenu.png)
