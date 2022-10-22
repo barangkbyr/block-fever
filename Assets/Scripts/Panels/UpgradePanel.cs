@@ -8,7 +8,7 @@ namespace Assets.Scripts.Panels {
     public class UpgradePanel : BasePanel {
         public TextMeshProUGUI totalBallNumber;
         public TextMeshProUGUI ballUpgradeCost;
-        public TextMeshProUGUI totalScore;
+        public TextMeshProUGUI totalScoreText;
 
         public Button ballUpgradeButton;
 
@@ -35,20 +35,21 @@ namespace Assets.Scripts.Panels {
             var savedValues = SaveHandler.Instance.savedValues;
             if (savedValues.ballUpgradeCost <= savedValues.totalScore) {
                 savedValues.totalScore -= savedValues.ballUpgradeCost;
-                savedValues.ballCount += 1;
-                savedValues.ballUpgradeCost *= 2;
+                savedValues.ballCount++;
+                savedValues.ballUpgradeCost += savedValues.currentUpgradeLevel * 100;
+                savedValues.currentUpgradeLevel++;
                 RefreshUi();
                 CheckIfValuesEnough();
             } else {
-                ballUpgradeCost.text = ("+1 Ball Upgrade Cost: " + savedValues.ballUpgradeCost).StrikeThrough();
+                ballUpgradeCost.text = $"+1 Ball Upgrade Cost: {savedValues.ballUpgradeCost}".StrikeThrough();
             }
         }
 
         private void RefreshUi() {
             var saveHandler = SaveHandler.Instance.savedValues;
-            totalBallNumber.text = "Total Number of Balls: " + saveHandler.ballCount.Bold();
-            ballUpgradeCost.text = "+1 Ball Upgrade Cost: " + saveHandler.ballUpgradeCost.Bold();
-            totalScore.text = "Total Score: " + saveHandler.totalScore;
+            totalBallNumber.text = $"Total Number of Balls: {saveHandler.ballCount.Bold()}";
+            ballUpgradeCost.text = $"+1 Ball Upgrade Cost: {saveHandler.ballUpgradeCost.Bold()}";
+            totalScoreText.text = $"Total Score: {saveHandler.totalScore}";
         }
 
         private void CheckIfValuesEnough() {
@@ -58,7 +59,7 @@ namespace Assets.Scripts.Panels {
 
         private void SetUpgradeButtonSprite(int totalScore, int upgradeCost, Button upgradeButton, TextMeshProUGUI upgradeCostText) {
             upgradeButton.image.sprite = totalScore >= upgradeCost ? onSprite : offSprite;
-            upgradeCostText.text = totalScore >= upgradeCost ? "+1 Ball Upgrade Cost: " + upgradeCost.Bold() : ("+1 Ball Upgrade Cost: " + upgradeCost).StrikeThrough();
+            upgradeCostText.text = totalScore >= upgradeCost ? $"+1 Ball Upgrade Cost: {upgradeCost.Bold()}" : $"+1 Ball Upgrade Cost: {upgradeCost}".StrikeThrough();
         }
 
         private void OnDisable() {

@@ -12,11 +12,7 @@ namespace Assets.Scripts {
         public static Action OnLevelSuccessfullyEnd;
 
         private void Awake() {
-            //var saveHandler = SaveHandler.Instance.savedValues;
             Application.targetFrameRate = Screen.currentResolution.refreshRate;
-            //Ball ball = ballDb.GetBall(saveHandler.currentBallSkinPreview);
-            //ballSpriteRenderer.sprite = ball.ballSprite;
-            //currentBallSprite.sprite = ballSpriteRenderer.sprite;
             BallSpawner.OnAllBallsDied += OnAllBallsDied;
             DontDestroyOnLoad(this.gameObject);
         }

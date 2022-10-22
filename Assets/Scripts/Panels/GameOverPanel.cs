@@ -11,7 +11,7 @@ namespace Assets.Scripts.Panels {
         public GameObject blocksParent;
 
         private void OnEnable() {
-            totalScoreText.text = "Total Score: " + SaveHandler.Instance.savedValues.totalScore;
+            totalScoreText.text = $"Total Score: {SaveHandler.Instance.savedValues.totalScore}";
             DisableSpawnerAndLine();
             DisableTopUi();
         }

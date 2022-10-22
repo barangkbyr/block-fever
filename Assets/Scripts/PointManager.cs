@@ -7,6 +7,7 @@ namespace Assets.Scripts {
         public static PointManager Instance { get; private set; }
 
         public TextMeshProUGUI scoreText;
+        public TextMeshProUGUI levelText;
 
         public int currentScore;
 
@@ -30,7 +31,8 @@ namespace Assets.Scripts {
         }
 
         private void Update() {
-            scoreText.text = "Current Points: " + currentScore;
+            scoreText.text = $"Points: {currentScore}";
+            levelText.text = $"Level: {SaveHandler.Instance.savedValues.playerLevel}";
         }
 
         private void AddScore() {

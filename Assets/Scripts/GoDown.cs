@@ -17,7 +17,7 @@ namespace Assets.Scripts {
 
         private void MoveBlocks() {
             block = GameObject.FindGameObjectWithTag(TagsAndLayers.StoneTag);
-            if (block.gameObject.activeInHierarchy) {
+            if (block != null) {
                 var step = blockDownSpeed * Time.deltaTime;
                 gameObject.transform.position = Vector2.MoveTowards(gameObject.transform.position, new Vector2(0, -3.65f), step);
             }
