@@ -9,5 +9,8 @@ Unity version: <b>2021.3.6f1</b>
 * Upgrade system
 * Random level generation
 
+<b>Gameplay</b><br>
+https://youtu.be/bZa-X9TD1_U
+
 <b>Screenshots</b><br>
 ![Screenshot](https://github.com/barangkbyr/brick-breaker/blob/main/MainMenu.png)
