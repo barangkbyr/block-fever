@@ -3624,6 +3624,7 @@ MonoBehaviour:
     currentBallSkinPreview: 0
     playerLevel: 1
     ballUpgradeCost: 100
+    currentUpgradeLevel: 1
     isBallsUnlocked: 0000000000000000000000000000000000000000000000000000000000000000000000
 --- !u!4 &1026566580
 Transform:
@@ -4520,7 +4521,7 @@ MonoBehaviour:
   topUi: {fileID: 1001301460}
   totalBallNumber: {fileID: 1335928588}
   ballUpgradeCost: {fileID: 1958493770}
-  totalScore: {fileID: 894672437}
+  totalScoreText: {fileID: 894672437}
   ballUpgradeButton: {fileID: 2079692745}
   onSprite: {fileID: 21300000, guid: be8bae3a984d133478c12eedc0ec631e, type: 3}
   offSprite: {fileID: 21300000, guid: 352fc7ee59774844cb69d2157e5b8a6d, type: 3}
@@ -5894,7 +5895,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed01d317c81f3c2468766276097bff0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ball: {fileID: 4221291024181082721, guid: c220d7b19828bb14ab26fd27925eecb7, type: 3}
+  ballPrefab: {fileID: 0}
   speed: 800
   spawnPosition: {fileID: 1431689244}
   recallButton: {fileID: 1368994939}

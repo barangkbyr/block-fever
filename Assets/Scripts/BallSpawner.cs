@@ -5,13 +5,12 @@ using System.Linq;
 using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.EventSystems;
 
 namespace Assets.Scripts {
     public class BallSpawner : MonoBehaviour {
         public static Action OnAllBallsDied;
 
-        public GameObject ball;
+        public GameObject ballPrefab;
 
         [SerializeField]
         private float speed;
@@ -78,7 +77,7 @@ namespace Assets.Scripts {
 
             for (int i = 0; i < ballCount; i++) {
                 yield return new WaitForSeconds(0.08f);
-                GameObject myInst = Instantiate(ball, spawnPosition.transform.position, Quaternion.identity);
+                GameObject myInst = Instantiate(ballPrefab, spawnPosition.transform.position, Quaternion.identity);
                 list.Add(myInst);
                 myInst.GetComponent<Rigidbody2D>().AddForce(_mouseDir * speed);
             }
